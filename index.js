@@ -116,6 +116,13 @@ async function init() {
     wait(500)
   }
 
+  emptyDir(path.join(root, '.git'))
+
+  const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')))
+  pkg.name = packageName
+  pkg.version = '0.0.0'
+  delete pkg.author
+
   const packageManager = /pnpm/.test(process.env.npm_execpath)
     ? 'pnpm'
     : /yarn/.test(process.env.npm_execpath)
