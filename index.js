@@ -106,7 +106,7 @@ async function init() {
 
   console.log(`\nScaffolding project in ${root}...`)
 
-  clone('https://github.com/MaleWeb/fast-vue3.git', root, {}, (e) => {
+  clone('https://gitee.com/maleweb/fast-vue3.git', root, {}, (e) => {
     if (e) {
       console.log(`git clone err: ${e}`)
     }
@@ -118,10 +118,12 @@ async function init() {
 
   emptyDir(path.join(root, '.git'))
 
-  const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json')))
+  const pkgJSONPath = path.join(root, 'package.json')
+  const pkg = JSON.parse(fs.readFileSync(pkgJSONPath))
   pkg.name = packageName
   pkg.version = '0.0.0'
   delete pkg.author
+  fs.writeFileSync(pkgJSONPath, JSON.stringify(pkg, null, 2) + '\n')
 
   const packageManager = /pnpm/.test(process.env.npm_execpath)
     ? 'pnpm'
