@@ -5517,19 +5517,17 @@ async function init() {
   }
   console.log(`
 Scaffolding project in ${root}...`);
-  (0, import_git_clone.default)("https://github.com/MaleWeb/fast-vue3.git", root, {}, (e) => {
-    if (e) {
-      console.log(`git clone err: ${e}`);
-    }
-  });
-  while (!import_fs2.default.existsSync(root) || import_fs2.default.readdirSync(root).length <= 1) {
+  (0, import_git_clone.default)("https://gitee.com/maleweb/fast-vue3.git", root);
+  while (!import_fs2.default.existsSync(root) || import_fs2.default.readdirSync(root).length < 6) {
     wait(500);
   }
   emptyDir(import_path2.default.join(root, ".git"));
-  const pkg = JSON.parse(import_fs2.default.readFileSync(import_path2.default.join(root, "package.json")));
+  const pkgJSONPath = import_path2.default.join(root, "package.json");
+  const pkg = JSON.parse(import_fs2.default.readFileSync(pkgJSONPath));
   pkg.name = packageName;
   pkg.version = "0.0.0";
   delete pkg.author;
+  import_fs2.default.writeFileSync(pkgJSONPath, JSON.stringify(pkg, null, 2) + "\n");
   const packageManager = /pnpm/.test(process.env.npm_execpath) ? "pnpm" : /yarn/.test(process.env.npm_execpath) ? "yarn" : "npm";
   console.log(`
 Done. Now run:

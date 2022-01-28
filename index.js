@@ -106,13 +106,9 @@ async function init() {
 
   console.log(`\nScaffolding project in ${root}...`)
 
-  clone('https://github.com/MaleWeb/fast-vue3.git', root, {}, (e) => {
-    if (e) {
-      console.log(`git clone err: ${e}`)
-    }
-  })
+  clone('https://gitee.com/maleweb/fast-vue3.git', root)
 
-  while (!fs.existsSync(root) || fs.readdirSync(root).length <= 1) {
+  while (!fs.existsSync(root) || fs.readdirSync(root).length < 6) {
     wait(500)
   }
 
