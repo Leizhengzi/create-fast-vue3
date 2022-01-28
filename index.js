@@ -106,7 +106,7 @@ async function init() {
 
   console.log(`\nScaffolding project in ${root}...`)
 
-  clone('https://gitee.com/maleweb/fast-vue3.git', root, {}, (e) => {
+  clone('https://github.com/MaleWeb/fast-vue3.git', root, {}, (e) => {
     if (e) {
       console.log(`git clone err: ${e}`)
     }
