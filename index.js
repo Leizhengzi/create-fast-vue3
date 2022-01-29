@@ -2,7 +2,6 @@
 
 import fs from 'fs'
 import path from 'path'
-import util from 'util'
 
 import minimist from 'minimist'
 import prompts from 'prompts'
