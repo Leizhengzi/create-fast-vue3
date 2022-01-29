@@ -2,17 +2,39 @@
 
 import fs from 'fs'
 import path from 'path'
+import util from 'util'
 
 import minimist from 'minimist'
 import prompts from 'prompts'
 import { red, green, bold } from 'kolorist'
 import { postOrderDirectoryTraverse } from './utils/directoryTraverse'
 import getCommand from './utils/getCommand'
-import clone from 'git-clone'
+import clone from 'git-clone/promise'
+import ora from 'ora'
 
-function wait(ms) {
-  return new Promise((resolve) => setTimeout(() => resolve(), ms))
+async function loading(fn, message, ...args) {
+  const spinner = ora(message)
+  spinner.start()
+
+  try {
+    const result = await fn(...args)
+    spinner.succeed()
+    return result
+  } catch(error) {
+    console.log(error)
+    spinner.fail('Request failed, refetch...')
+  }
 }
+
+function changePackageInfo(root, packageName) {
+    const pkgJSONPath = path.join(root, 'package.json')
+    const pkg = JSON.parse(fs.readFileSync(pkgJSONPath))
+    pkg.name = packageName
+    pkg.version = '0.0.0'
+    delete pkg.author
+    fs.writeFileSync(pkgJSONPath, JSON.stringify(pkg, null, 2) + '\n')
+}
+
 
 function isValidPackageName(projectName) {
   return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(projectName)
@@ -40,6 +62,7 @@ function emptyDir(dir) {
 }
 
 async function init() {
+  const downloadUrl = 'https://gitee.com/maleweb/fast-vue3.git'
   const cwd = process.cwd()
   const argv = minimist(process.argv.slice(2))
 
@@ -106,20 +129,9 @@ async function init() {
 
   console.log(`\nScaffolding project in ${root}...`)
 
-  clone('https://gitee.com/maleweb/fast-vue3.git', root)
+  await loading(clone, 'waiting download template', downloadUrl, root, { checkout: 'main' })
 
-  while (!fs.existsSync(root) || fs.readdirSync(root).length < 6) {
-    wait(500)
-  }
-
-  emptyDir(path.join(root, '.git'))
-
-  const pkgJSONPath = path.join(root, 'package.json')
-  const pkg = JSON.parse(fs.readFileSync(pkgJSONPath))
-  pkg.name = packageName
-  pkg.version = '0.0.0'
-  delete pkg.author
-  fs.writeFileSync(pkgJSONPath, JSON.stringify(pkg, null, 2) + '\n')
+  changePackageInfo(root, packageName)
 
   const packageManager = /pnpm/.test(process.env.npm_execpath)
     ? 'pnpm'
