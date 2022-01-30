@@ -543,7 +543,7 @@ var require_clear = __commonJS({
 var require_figures = __commonJS({
   "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/util/figures.js"(exports, module2) {
     "use strict";
-    var main2 = {
+    var main = {
       arrowUp: "\u2191",
       arrowDown: "\u2193",
       arrowLeft: "\u2190",
@@ -558,10 +558,10 @@ var require_figures = __commonJS({
       pointer: "\u276F"
     };
     var win = {
-      arrowUp: main2.arrowUp,
-      arrowDown: main2.arrowDown,
-      arrowLeft: main2.arrowLeft,
-      arrowRight: main2.arrowRight,
+      arrowUp: main.arrowUp,
+      arrowDown: main.arrowDown,
+      arrowLeft: main.arrowLeft,
+      arrowRight: main.arrowRight,
       radioOn: "(*)",
       radioOff: "( )",
       tick: "\u221A",
@@ -571,7 +571,7 @@ var require_figures = __commonJS({
       line: "\u2500",
       pointer: ">"
     };
-    var figures = process.platform === "win32" ? win : main2;
+    var figures = process.platform === "win32" ? win : main;
     module2.exports = figures;
   }
 });
@@ -582,7 +582,7 @@ var require_style = __commonJS({
     "use strict";
     var c = require_kleur();
     var figures = require_figures();
-    var styles2 = Object.freeze({
+    var styles = Object.freeze({
       password: {
         scale: 1,
         render: (input) => "*".repeat(input.length)
@@ -600,7 +600,7 @@ var require_style = __commonJS({
         render: (input) => `${input}`
       }
     });
-    var render = (type) => styles2[type] || styles2.default;
+    var render = (type) => styles[type] || styles.default;
     var symbols = Object.freeze({
       aborted: c.red(figures.cross),
       done: c.green(figures.tick),
@@ -611,7 +611,7 @@ var require_style = __commonJS({
     var delimiter = (completing) => c.gray(completing ? figures.ellipsis : figures.pointerSmall);
     var item = (expandable, expanded) => c.gray(expandable ? expanded ? figures.pointerSmall : "+" : figures.line);
     module2.exports = {
-      styles: styles2,
+      styles,
       render,
       symbols,
       symbol,
@@ -692,7 +692,7 @@ var require_util = __commonJS({
 var require_prompt = __commonJS({
   "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/dist/elements/prompt.js"(exports, module2) {
     "use strict";
-    var readline2 = require("readline");
+    var readline = require("readline");
     var _require = require_util();
     var action = _require.action;
     var EventEmitter = require("events");
@@ -707,11 +707,11 @@ var require_prompt = __commonJS({
         this.in = opts.stdin || process.stdin;
         this.out = opts.stdout || process.stdout;
         this.onRender = (opts.onRender || (() => void 0)).bind(this);
-        const rl = readline2.createInterface({
+        const rl = readline.createInterface({
           input: this.in,
           escapeCodeTimeout: 50
         });
-        readline2.emitKeypressEvents(this.in, rl);
+        readline.emitKeypressEvents(this.in, rl);
         if (this.in.isTTY)
           this.in.setRawMode(true);
         const isSelect = ["SelectPrompt", "MultiselectPrompt"].indexOf(this.constructor.name) > -1;
@@ -3122,7 +3122,7 @@ var require_clear2 = __commonJS({
 var require_figures2 = __commonJS({
   "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/util/figures.js"(exports, module2) {
     "use strict";
-    var main2 = {
+    var main = {
       arrowUp: "\u2191",
       arrowDown: "\u2193",
       arrowLeft: "\u2190",
@@ -3137,10 +3137,10 @@ var require_figures2 = __commonJS({
       pointer: "\u276F"
     };
     var win = {
-      arrowUp: main2.arrowUp,
-      arrowDown: main2.arrowDown,
-      arrowLeft: main2.arrowLeft,
-      arrowRight: main2.arrowRight,
+      arrowUp: main.arrowUp,
+      arrowDown: main.arrowDown,
+      arrowLeft: main.arrowLeft,
+      arrowRight: main.arrowRight,
       radioOn: "(*)",
       radioOff: "( )",
       tick: "\u221A",
@@ -3150,7 +3150,7 @@ var require_figures2 = __commonJS({
       line: "\u2500",
       pointer: ">"
     };
-    var figures = process.platform === "win32" ? win : main2;
+    var figures = process.platform === "win32" ? win : main;
     module2.exports = figures;
   }
 });
@@ -3161,13 +3161,13 @@ var require_style2 = __commonJS({
     "use strict";
     var c = require_kleur();
     var figures = require_figures2();
-    var styles2 = Object.freeze({
+    var styles = Object.freeze({
       password: { scale: 1, render: (input) => "*".repeat(input.length) },
       emoji: { scale: 2, render: (input) => "\u{1F603}".repeat(input.length) },
       invisible: { scale: 0, render: (input) => "" },
       default: { scale: 1, render: (input) => `${input}` }
     });
-    var render = (type) => styles2[type] || styles2.default;
+    var render = (type) => styles[type] || styles.default;
     var symbols = Object.freeze({
       aborted: c.red(figures.cross),
       done: c.green(figures.tick),
@@ -3178,7 +3178,7 @@ var require_style2 = __commonJS({
     var delimiter = (completing) => c.gray(completing ? figures.ellipsis : figures.pointerSmall);
     var item = (expandable, expanded) => c.gray(expandable ? expanded ? figures.pointerSmall : "+" : figures.line);
     module2.exports = {
-      styles: styles2,
+      styles,
       render,
       symbols,
       symbol,
@@ -3256,7 +3256,7 @@ var require_util2 = __commonJS({
 var require_prompt2 = __commonJS({
   "node_modules/.pnpm/prompts@2.4.2/node_modules/prompts/lib/elements/prompt.js"(exports, module2) {
     "use strict";
-    var readline2 = require("readline");
+    var readline = require("readline");
     var { action } = require_util2();
     var EventEmitter = require("events");
     var { beep, cursor } = require_src();
@@ -3268,8 +3268,8 @@ var require_prompt2 = __commonJS({
         this.in = opts.stdin || process.stdin;
         this.out = opts.stdout || process.stdout;
         this.onRender = (opts.onRender || (() => void 0)).bind(this);
-        const rl = readline2.createInterface({ input: this.in, escapeCodeTimeout: 50 });
-        readline2.emitKeypressEvents(this.in, rl);
+        const rl = readline.createInterface({ input: this.in, escapeCodeTimeout: 50 });
+        readline.emitKeypressEvents(this.in, rl);
         if (this.in.isTTY)
           this.in.setRawMode(true);
         const isSelect = ["SelectPrompt", "MultiselectPrompt"].indexOf(this.constructor.name) > -1;
@@ -6289,15 +6289,15 @@ var require_color_convert = __commonJS({
 var require_ansi_styles = __commonJS({
   "node_modules/.pnpm/ansi-styles@4.3.0/node_modules/ansi-styles/index.js"(exports, module2) {
     "use strict";
-    var wrapAnsi162 = (fn, offset) => (...args) => {
+    var wrapAnsi16 = (fn, offset) => (...args) => {
       const code = fn(...args);
       return `\x1B[${code + offset}m`;
     };
-    var wrapAnsi2562 = (fn, offset) => (...args) => {
+    var wrapAnsi256 = (fn, offset) => (...args) => {
       const code = fn(...args);
       return `\x1B[${38 + offset};5;${code}m`;
     };
-    var wrapAnsi16m2 = (fn, offset) => (...args) => {
+    var wrapAnsi16m = (fn, offset) => (...args) => {
       const rgb = fn(...args);
       return `\x1B[${38 + offset};2;${rgb[0]};${rgb[1]};${rgb[2]}m`;
     };
@@ -6324,20 +6324,20 @@ var require_ansi_styles = __commonJS({
         colorConvert = require_color_convert();
       }
       const offset = isBackground ? 10 : 0;
-      const styles2 = {};
+      const styles = {};
       for (const [sourceSpace, suite] of Object.entries(colorConvert)) {
         const name = sourceSpace === "ansi16" ? "ansi" : sourceSpace;
         if (sourceSpace === targetSpace) {
-          styles2[name] = wrap(identity, offset);
+          styles[name] = wrap(identity, offset);
         } else if (typeof suite === "object") {
-          styles2[name] = wrap(suite[targetSpace], offset);
+          styles[name] = wrap(suite[targetSpace], offset);
         }
       }
-      return styles2;
+      return styles;
     };
-    function assembleStyles2() {
+    function assembleStyles() {
       const codes = /* @__PURE__ */ new Map();
-      const styles2 = {
+      const styles = {
         modifier: {
           reset: [0, 0],
           bold: [1, 22],
@@ -6385,41 +6385,41 @@ var require_ansi_styles = __commonJS({
           bgWhiteBright: [107, 49]
         }
       };
-      styles2.color.gray = styles2.color.blackBright;
-      styles2.bgColor.bgGray = styles2.bgColor.bgBlackBright;
-      styles2.color.grey = styles2.color.blackBright;
-      styles2.bgColor.bgGrey = styles2.bgColor.bgBlackBright;
-      for (const [groupName, group] of Object.entries(styles2)) {
+      styles.color.gray = styles.color.blackBright;
+      styles.bgColor.bgGray = styles.bgColor.bgBlackBright;
+      styles.color.grey = styles.color.blackBright;
+      styles.bgColor.bgGrey = styles.bgColor.bgBlackBright;
+      for (const [groupName, group] of Object.entries(styles)) {
         for (const [styleName, style] of Object.entries(group)) {
-          styles2[styleName] = {
+          styles[styleName] = {
             open: `\x1B[${style[0]}m`,
             close: `\x1B[${style[1]}m`
           };
-          group[styleName] = styles2[styleName];
+          group[styleName] = styles[styleName];
           codes.set(style[0], style[1]);
         }
-        Object.defineProperty(styles2, groupName, {
+        Object.defineProperty(styles, groupName, {
           value: group,
           enumerable: false
         });
       }
-      Object.defineProperty(styles2, "codes", {
+      Object.defineProperty(styles, "codes", {
         value: codes,
         enumerable: false
       });
-      styles2.color.close = "\x1B[39m";
-      styles2.bgColor.close = "\x1B[49m";
-      setLazyProperty(styles2.color, "ansi", () => makeDynamicStyles(wrapAnsi162, "ansi16", ansi2ansi, false));
-      setLazyProperty(styles2.color, "ansi256", () => makeDynamicStyles(wrapAnsi2562, "ansi256", ansi2ansi, false));
-      setLazyProperty(styles2.color, "ansi16m", () => makeDynamicStyles(wrapAnsi16m2, "rgb", rgb2rgb, false));
-      setLazyProperty(styles2.bgColor, "ansi", () => makeDynamicStyles(wrapAnsi162, "ansi16", ansi2ansi, true));
-      setLazyProperty(styles2.bgColor, "ansi256", () => makeDynamicStyles(wrapAnsi2562, "ansi256", ansi2ansi, true));
-      setLazyProperty(styles2.bgColor, "ansi16m", () => makeDynamicStyles(wrapAnsi16m2, "rgb", rgb2rgb, true));
-      return styles2;
+      styles.color.close = "\x1B[39m";
+      styles.bgColor.close = "\x1B[49m";
+      setLazyProperty(styles.color, "ansi", () => makeDynamicStyles(wrapAnsi16, "ansi16", ansi2ansi, false));
+      setLazyProperty(styles.color, "ansi256", () => makeDynamicStyles(wrapAnsi256, "ansi256", ansi2ansi, false));
+      setLazyProperty(styles.color, "ansi16m", () => makeDynamicStyles(wrapAnsi16m, "rgb", rgb2rgb, false));
+      setLazyProperty(styles.bgColor, "ansi", () => makeDynamicStyles(wrapAnsi16, "ansi16", ansi2ansi, true));
+      setLazyProperty(styles.bgColor, "ansi256", () => makeDynamicStyles(wrapAnsi256, "ansi256", ansi2ansi, true));
+      setLazyProperty(styles.bgColor, "ansi16m", () => makeDynamicStyles(wrapAnsi16m, "rgb", rgb2rgb, true));
+      return styles;
     }
     Object.defineProperty(module2, "exports", {
       enumerable: true,
-      get: assembleStyles2
+      get: assembleStyles
     });
   }
 });
@@ -6441,26 +6441,26 @@ var require_has_flag = __commonJS({
 var require_supports_color = __commonJS({
   "node_modules/.pnpm/supports-color@7.2.0/node_modules/supports-color/index.js"(exports, module2) {
     "use strict";
-    var os2 = require("os");
-    var tty2 = require("tty");
-    var hasFlag2 = require_has_flag();
-    var { env: env2 } = process;
+    var os = require("os");
+    var tty = require("tty");
+    var hasFlag = require_has_flag();
+    var { env } = process;
     var forceColor;
-    if (hasFlag2("no-color") || hasFlag2("no-colors") || hasFlag2("color=false") || hasFlag2("color=never")) {
+    if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") || hasFlag("color=never")) {
       forceColor = 0;
-    } else if (hasFlag2("color") || hasFlag2("colors") || hasFlag2("color=true") || hasFlag2("color=always")) {
+    } else if (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) {
       forceColor = 1;
     }
-    if ("FORCE_COLOR" in env2) {
-      if (env2.FORCE_COLOR === "true") {
+    if ("FORCE_COLOR" in env) {
+      if (env.FORCE_COLOR === "true") {
         forceColor = 1;
-      } else if (env2.FORCE_COLOR === "false") {
+      } else if (env.FORCE_COLOR === "false") {
         forceColor = 0;
       } else {
-        forceColor = env2.FORCE_COLOR.length === 0 ? 1 : Math.min(parseInt(env2.FORCE_COLOR, 10), 3);
+        forceColor = env.FORCE_COLOR.length === 0 ? 1 : Math.min(parseInt(env.FORCE_COLOR, 10), 3);
       }
     }
-    function translateLevel2(level) {
+    function translateLevel(level) {
       if (level === 0) {
         return false;
       }
@@ -6471,70 +6471,70 @@ var require_supports_color = __commonJS({
         has16m: level >= 3
       };
     }
-    function supportsColor2(haveStream, streamIsTTY) {
+    function supportsColor(haveStream, streamIsTTY) {
       if (forceColor === 0) {
         return 0;
       }
-      if (hasFlag2("color=16m") || hasFlag2("color=full") || hasFlag2("color=truecolor")) {
+      if (hasFlag("color=16m") || hasFlag("color=full") || hasFlag("color=truecolor")) {
         return 3;
       }
-      if (hasFlag2("color=256")) {
+      if (hasFlag("color=256")) {
         return 2;
       }
       if (haveStream && !streamIsTTY && forceColor === void 0) {
         return 0;
       }
       const min = forceColor || 0;
-      if (env2.TERM === "dumb") {
+      if (env.TERM === "dumb") {
         return min;
       }
       if (process.platform === "win32") {
-        const osRelease = os2.release().split(".");
+        const osRelease = os.release().split(".");
         if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
           return Number(osRelease[2]) >= 14931 ? 3 : 2;
         }
         return 1;
       }
-      if ("CI" in env2) {
-        if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI", "GITHUB_ACTIONS", "BUILDKITE"].some((sign) => sign in env2) || env2.CI_NAME === "codeship") {
+      if ("CI" in env) {
+        if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI", "GITHUB_ACTIONS", "BUILDKITE"].some((sign) => sign in env) || env.CI_NAME === "codeship") {
           return 1;
         }
         return min;
       }
-      if ("TEAMCITY_VERSION" in env2) {
-        return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env2.TEAMCITY_VERSION) ? 1 : 0;
+      if ("TEAMCITY_VERSION" in env) {
+        return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env.TEAMCITY_VERSION) ? 1 : 0;
       }
-      if (env2.COLORTERM === "truecolor") {
+      if (env.COLORTERM === "truecolor") {
         return 3;
       }
-      if ("TERM_PROGRAM" in env2) {
-        const version = parseInt((env2.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
-        switch (env2.TERM_PROGRAM) {
+      if ("TERM_PROGRAM" in env) {
+        const version = parseInt((env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+        switch (env.TERM_PROGRAM) {
           case "iTerm.app":
             return version >= 3 ? 3 : 2;
           case "Apple_Terminal":
             return 2;
         }
       }
-      if (/-256(color)?$/i.test(env2.TERM)) {
+      if (/-256(color)?$/i.test(env.TERM)) {
         return 2;
       }
-      if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env2.TERM)) {
+      if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env.TERM)) {
         return 1;
       }
-      if ("COLORTERM" in env2) {
+      if ("COLORTERM" in env) {
         return 1;
       }
       return min;
     }
     function getSupportLevel(stream) {
-      const level = supportsColor2(stream, stream && stream.isTTY);
-      return translateLevel2(level);
+      const level = supportsColor(stream, stream && stream.isTTY);
+      return translateLevel(level);
     }
     module2.exports = {
       supportsColor: getSupportLevel,
-      stdout: translateLevel2(supportsColor2(true, tty2.isatty(1))),
-      stderr: translateLevel2(supportsColor2(true, tty2.isatty(2)))
+      stdout: translateLevel(supportsColor(true, tty.isatty(1))),
+      stderr: translateLevel(supportsColor(true, tty.isatty(2)))
     };
   }
 });
@@ -6543,7 +6543,7 @@ var require_supports_color = __commonJS({
 var require_util4 = __commonJS({
   "node_modules/.pnpm/chalk@4.1.2/node_modules/chalk/source/util.js"(exports, module2) {
     "use strict";
-    var stringReplaceAll2 = (string, substring, replacer) => {
+    var stringReplaceAll = (string, substring, replacer) => {
       let index = string.indexOf(substring);
       if (index === -1) {
         return string;
@@ -6559,7 +6559,7 @@ var require_util4 = __commonJS({
       returnValue += string.substr(endIndex);
       return returnValue;
     };
-    var stringEncaseCRLFWithFirstIndex2 = (string, prefix, postfix, index) => {
+    var stringEncaseCRLFWithFirstIndex = (string, prefix, postfix, index) => {
       let endIndex = 0;
       let returnValue = "";
       do {
@@ -6572,8 +6572,8 @@ var require_util4 = __commonJS({
       return returnValue;
     };
     module2.exports = {
-      stringReplaceAll: stringReplaceAll2,
-      stringEncaseCRLFWithFirstIndex: stringEncaseCRLFWithFirstIndex2
+      stringReplaceAll,
+      stringEncaseCRLFWithFirstIndex
     };
   }
 });
@@ -6640,27 +6640,27 @@ var require_templates = __commonJS({
       }
       return results;
     }
-    function buildStyle(chalk3, styles2) {
+    function buildStyle(chalk, styles) {
       const enabled2 = {};
-      for (const layer of styles2) {
+      for (const layer of styles) {
         for (const style of layer.styles) {
           enabled2[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk3;
-      for (const [styleName, styles3] of Object.entries(enabled2)) {
-        if (!Array.isArray(styles3)) {
+      let current = chalk;
+      for (const [styleName, styles2] of Object.entries(enabled2)) {
+        if (!Array.isArray(styles2)) {
           continue;
         }
         if (!(styleName in current)) {
           throw new Error(`Unknown Chalk style: ${styleName}`);
         }
-        current = styles3.length > 0 ? current[styleName](...styles3) : current[styleName];
+        current = styles2.length > 0 ? current[styleName](...styles2) : current[styleName];
       }
       return current;
     }
-    module2.exports = (chalk3, temporary) => {
-      const styles2 = [];
+    module2.exports = (chalk, temporary) => {
+      const styles = [];
       const chunks = [];
       let chunk = [];
       temporary.replace(TEMPLATE_REGEX, (m, escapeCharacter, inverse2, style, close, character) => {
@@ -6669,22 +6669,22 @@ var require_templates = __commonJS({
         } else if (style) {
           const string = chunk.join("");
           chunk = [];
-          chunks.push(styles2.length === 0 ? string : buildStyle(chalk3, styles2)(string));
-          styles2.push({ inverse: inverse2, styles: parseStyle(style) });
+          chunks.push(styles.length === 0 ? string : buildStyle(chalk, styles)(string));
+          styles.push({ inverse: inverse2, styles: parseStyle(style) });
         } else if (close) {
-          if (styles2.length === 0) {
+          if (styles.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk3, styles2)(chunk.join("")));
+          chunks.push(buildStyle(chalk, styles)(chunk.join("")));
           chunk = [];
-          styles2.pop();
+          styles.pop();
         } else {
           chunk.push(character);
         }
       });
       chunks.push(chunk.join(""));
-      if (styles2.length > 0) {
-        const errMessage = `Chalk template literal is missing ${styles2.length} closing bracket${styles2.length === 1 ? "" : "s"} (\`}\`)`;
+      if (styles.length > 0) {
+        const errMessage = `Chalk template literal is missing ${styles.length} closing bracket${styles.length === 1 ? "" : "s"} (\`}\`)`;
         throw new Error(errMessage);
       }
       return chunks.join("");
@@ -6696,90 +6696,90 @@ var require_templates = __commonJS({
 var require_source = __commonJS({
   "node_modules/.pnpm/chalk@4.1.2/node_modules/chalk/source/index.js"(exports, module2) {
     "use strict";
-    var ansiStyles2 = require_ansi_styles();
-    var { stdout: stdoutColor2, stderr: stderrColor2 } = require_supports_color();
+    var ansiStyles = require_ansi_styles();
+    var { stdout: stdoutColor, stderr: stderrColor } = require_supports_color();
     var {
-      stringReplaceAll: stringReplaceAll2,
-      stringEncaseCRLFWithFirstIndex: stringEncaseCRLFWithFirstIndex2
+      stringReplaceAll,
+      stringEncaseCRLFWithFirstIndex
     } = require_util4();
     var { isArray } = Array;
-    var levelMapping2 = [
+    var levelMapping = [
       "ansi",
       "ansi",
       "ansi256",
       "ansi16m"
     ];
-    var styles2 = /* @__PURE__ */ Object.create(null);
-    var applyOptions2 = (object, options2 = {}) => {
+    var styles = /* @__PURE__ */ Object.create(null);
+    var applyOptions = (object, options2 = {}) => {
       if (options2.level && !(Number.isInteger(options2.level) && options2.level >= 0 && options2.level <= 3)) {
         throw new Error("The `level` option should be an integer from 0 to 3");
       }
-      const colorLevel = stdoutColor2 ? stdoutColor2.level : 0;
+      const colorLevel = stdoutColor ? stdoutColor.level : 0;
       object.level = options2.level === void 0 ? colorLevel : options2.level;
     };
     var ChalkClass = class {
       constructor(options2) {
-        return chalkFactory2(options2);
+        return chalkFactory(options2);
       }
     };
-    var chalkFactory2 = (options2) => {
-      const chalk4 = {};
-      applyOptions2(chalk4, options2);
-      chalk4.template = (...arguments_) => chalkTag(chalk4.template, ...arguments_);
-      Object.setPrototypeOf(chalk4, Chalk.prototype);
-      Object.setPrototypeOf(chalk4.template, chalk4);
-      chalk4.template.constructor = () => {
+    var chalkFactory = (options2) => {
+      const chalk2 = {};
+      applyOptions(chalk2, options2);
+      chalk2.template = (...arguments_) => chalkTag(chalk2.template, ...arguments_);
+      Object.setPrototypeOf(chalk2, Chalk.prototype);
+      Object.setPrototypeOf(chalk2.template, chalk2);
+      chalk2.template.constructor = () => {
         throw new Error("`chalk.constructor()` is deprecated. Use `new chalk.Instance()` instead.");
       };
-      chalk4.template.Instance = ChalkClass;
-      return chalk4.template;
+      chalk2.template.Instance = ChalkClass;
+      return chalk2.template;
     };
     function Chalk(options2) {
-      return chalkFactory2(options2);
+      return chalkFactory(options2);
     }
-    for (const [styleName, style] of Object.entries(ansiStyles2)) {
-      styles2[styleName] = {
+    for (const [styleName, style] of Object.entries(ansiStyles)) {
+      styles[styleName] = {
         get() {
-          const builder = createBuilder2(this, createStyler2(style.open, style.close, this._styler), this._isEmpty);
+          const builder = createBuilder(this, createStyler(style.open, style.close, this._styler), this._isEmpty);
           Object.defineProperty(this, styleName, { value: builder });
           return builder;
         }
       };
     }
-    styles2.visible = {
+    styles.visible = {
       get() {
-        const builder = createBuilder2(this, this._styler, true);
+        const builder = createBuilder(this, this._styler, true);
         Object.defineProperty(this, "visible", { value: builder });
         return builder;
       }
     };
-    var usedModels2 = ["rgb", "hex", "keyword", "hsl", "hsv", "hwb", "ansi", "ansi256"];
-    for (const model of usedModels2) {
-      styles2[model] = {
+    var usedModels = ["rgb", "hex", "keyword", "hsl", "hsv", "hwb", "ansi", "ansi256"];
+    for (const model of usedModels) {
+      styles[model] = {
         get() {
           const { level } = this;
           return function(...arguments_) {
-            const styler = createStyler2(ansiStyles2.color[levelMapping2[level]][model](...arguments_), ansiStyles2.color.close, this._styler);
-            return createBuilder2(this, styler, this._isEmpty);
+            const styler = createStyler(ansiStyles.color[levelMapping[level]][model](...arguments_), ansiStyles.color.close, this._styler);
+            return createBuilder(this, styler, this._isEmpty);
           };
         }
       };
     }
-    for (const model of usedModels2) {
+    for (const model of usedModels) {
       const bgModel = "bg" + model[0].toUpperCase() + model.slice(1);
-      styles2[bgModel] = {
+      styles[bgModel] = {
         get() {
           const { level } = this;
           return function(...arguments_) {
-            const styler = createStyler2(ansiStyles2.bgColor[levelMapping2[level]][model](...arguments_), ansiStyles2.bgColor.close, this._styler);
-            return createBuilder2(this, styler, this._isEmpty);
+            const styler = createStyler(ansiStyles.bgColor[levelMapping[level]][model](...arguments_), ansiStyles.bgColor.close, this._styler);
+            return createBuilder(this, styler, this._isEmpty);
           };
         }
       };
     }
-    var proto2 = Object.defineProperties(() => {
+    var proto = Object.defineProperties(() => {
     }, {
-      ...styles2,
+      ...styles,
       level: {
         enumerable: true,
         get() {
@@ -6790,7 +6790,7 @@ var require_source = __commonJS({
         }
       }
     });
-    var createStyler2 = (open, close, parent) => {
+    var createStyler = (open, close, parent) => {
       let openAll;
       let closeAll;
       if (parent === void 0) {
@@ -6808,20 +6808,20 @@ var require_source = __commonJS({
         parent
       };
     };
-    var createBuilder2 = (self2, _styler, _isEmpty) => {
+    var createBuilder = (self2, _styler, _isEmpty) => {
       const builder = (...arguments_) => {
         if (isArray(arguments_[0]) && isArray(arguments_[0].raw)) {
-          return applyStyle2(builder, chalkTag(builder, ...arguments_));
+          return applyStyle(builder, chalkTag(builder, ...arguments_));
         }
-        return applyStyle2(builder, arguments_.length === 1 ? "" + arguments_[0] : arguments_.join(" "));
+        return applyStyle(builder, arguments_.length === 1 ? "" + arguments_[0] : arguments_.join(" "));
       };
-      Object.setPrototypeOf(builder, proto2);
+      Object.setPrototypeOf(builder, proto);
       builder._generator = self2;
       builder._styler = _styler;
       builder._isEmpty = _isEmpty;
       return builder;
     };
-    var applyStyle2 = (self2, string) => {
+    var applyStyle = (self2, string) => {
       if (self2.level <= 0 || !string) {
         return self2._isEmpty ? "" : string;
       }
@@ -6832,18 +6832,18 @@ var require_source = __commonJS({
       const { openAll, closeAll } = styler;
       if (string.indexOf("\x1B") !== -1) {
         while (styler !== void 0) {
-          string = stringReplaceAll2(string, styler.close, styler.open);
+          string = stringReplaceAll(string, styler.close, styler.open);
           styler = styler.parent;
         }
       }
       const lfIndex = string.indexOf("\n");
       if (lfIndex !== -1) {
-        string = stringEncaseCRLFWithFirstIndex2(string, closeAll, openAll, lfIndex);
+        string = stringEncaseCRLFWithFirstIndex(string, closeAll, openAll, lfIndex);
       }
       return openAll + string + closeAll;
     };
     var template;
-    var chalkTag = (chalk4, ...strings) => {
+    var chalkTag = (chalk2, ...strings) => {
       const [firstString] = strings;
       if (!isArray(firstString) || !isArray(firstString.raw)) {
         return strings.join(" ");
@@ -6856,14 +6856,14 @@ var require_source = __commonJS({
       if (template === void 0) {
         template = require_templates();
       }
-      return template(chalk4, parts.join(""));
+      return template(chalk2, parts.join(""));
     };
-    Object.defineProperties(Chalk.prototype, styles2);
-    var chalk3 = Chalk();
-    chalk3.supportsColor = stdoutColor2;
-    chalk3.stderr = Chalk({ level: stderrColor2 ? stderrColor2.level : 0 });
-    chalk3.stderr.supportsColor = stderrColor2;
-    module2.exports = chalk3;
+    Object.defineProperties(Chalk.prototype, styles);
+    var chalk = Chalk();
+    chalk.supportsColor = stdoutColor;
+    chalk.stderr = Chalk({ level: stderrColor ? stderrColor.level : 0 });
+    chalk.stderr.supportsColor = stderrColor;
+    module2.exports = chalk;
   }
 });
 
@@ -6888,15 +6888,15 @@ var require_onetime = __commonJS({
     "use strict";
     var mimicFn = require_mimic_fn();
     var calledFunctions = /* @__PURE__ */ new WeakMap();
-    var onetime2 = (function_, options2 = {}) => {
+    var onetime = (function_, options2 = {}) => {
       if (typeof function_ !== "function") {
         throw new TypeError("Expected a function");
       }
       let returnValue;
       let callCount = 0;
       const functionName = function_.displayName || function_.name || "<anonymous>";
-      const onetime3 = function(...arguments_) {
-        calledFunctions.set(onetime3, ++callCount);
+      const onetime2 = function(...arguments_) {
+        calledFunctions.set(onetime2, ++callCount);
         if (callCount === 1) {
           returnValue = function_.apply(this, arguments_);
           function_ = null;
@@ -6905,12 +6905,12 @@ var require_onetime = __commonJS({
         }
         return returnValue;
       };
-      mimicFn(onetime3, function_);
-      calledFunctions.set(onetime3, callCount);
-      return onetime3;
+      mimicFn(onetime2, function_);
+      calledFunctions.set(onetime2, callCount);
+      return onetime2;
     };
-    module2.exports = onetime2;
-    module2.exports.default = onetime2;
+    module2.exports = onetime;
+    module2.exports.default = onetime;
     module2.exports.callCount = (function_) => {
       if (!calledFunctions.has(function_)) {
         throw new Error(`The given function \`${function_.name}\` is not wrapped by the \`onetime\` package`);
@@ -6942,25 +6942,25 @@ var require_signals = __commonJS({
 // node_modules/.pnpm/signal-exit@3.0.6/node_modules/signal-exit/index.js
 var require_signal_exit = __commonJS({
   "node_modules/.pnpm/signal-exit@3.0.6/node_modules/signal-exit/index.js"(exports, module2) {
-    var process6 = global.process;
-    var processOk = function(process7) {
-      return process7 && typeof process7 === "object" && typeof process7.removeListener === "function" && typeof process7.emit === "function" && typeof process7.reallyExit === "function" && typeof process7.listeners === "function" && typeof process7.kill === "function" && typeof process7.pid === "number" && typeof process7.on === "function";
+    var process2 = global.process;
+    var processOk = function(process3) {
+      return process3 && typeof process3 === "object" && typeof process3.removeListener === "function" && typeof process3.emit === "function" && typeof process3.reallyExit === "function" && typeof process3.listeners === "function" && typeof process3.kill === "function" && typeof process3.pid === "number" && typeof process3.on === "function";
     };
-    if (!processOk(process6)) {
+    if (!processOk(process2)) {
       module2.exports = function() {
       };
     } else {
       assert = require("assert");
       signals = require_signals();
-      isWin = /^win/i.test(process6.platform);
+      isWin = /^win/i.test(process2.platform);
       EE = require("events");
       if (typeof EE !== "function") {
         EE = EE.EventEmitter;
       }
-      if (process6.__signal_exit_emitter__) {
-        emitter = process6.__signal_exit_emitter__;
+      if (process2.__signal_exit_emitter__) {
+        emitter = process2.__signal_exit_emitter__;
       } else {
-        emitter = process6.__signal_exit_emitter__ = new EE();
+        emitter = process2.__signal_exit_emitter__ = new EE();
         emitter.count = 0;
         emitter.emitted = {};
       }
@@ -6996,12 +6996,12 @@ var require_signal_exit = __commonJS({
         loaded = false;
         signals.forEach(function(sig) {
           try {
-            process6.removeListener(sig, sigListeners[sig]);
+            process2.removeListener(sig, sigListeners[sig]);
           } catch (er) {
           }
         });
-        process6.emit = originalProcessEmit;
-        process6.reallyExit = originalProcessReallyExit;
+        process2.emit = originalProcessEmit;
+        process2.reallyExit = originalProcessReallyExit;
         emitter.count -= 1;
       };
       module2.exports.unload = unload;
@@ -7018,7 +7018,7 @@ var require_signal_exit = __commonJS({
           if (!processOk(global.process)) {
             return;
           }
-          var listeners = process6.listeners(sig);
+          var listeners = process2.listeners(sig);
           if (listeners.length === emitter.count) {
             unload();
             emit("exit", null, sig);
@@ -7026,7 +7026,7 @@ var require_signal_exit = __commonJS({
             if (isWin && sig === "SIGHUP") {
               sig = "SIGINT";
             }
-            process6.kill(process6.pid, sig);
+            process2.kill(process2.pid, sig);
           }
         };
       });
@@ -7042,35 +7042,35 @@ var require_signal_exit = __commonJS({
         emitter.count += 1;
         signals = signals.filter(function(sig) {
           try {
-            process6.on(sig, sigListeners[sig]);
+            process2.on(sig, sigListeners[sig]);
             return true;
           } catch (er) {
             return false;
           }
         });
-        process6.emit = processEmit;
-        process6.reallyExit = processReallyExit;
+        process2.emit = processEmit;
+        process2.reallyExit = processReallyExit;
       };
       module2.exports.load = load;
-      originalProcessReallyExit = process6.reallyExit;
+      originalProcessReallyExit = process2.reallyExit;
       processReallyExit = function processReallyExit2(code) {
         if (!processOk(global.process)) {
           return;
         }
-        process6.exitCode = code || 0;
-        emit("exit", process6.exitCode, null);
-        emit("afterexit", process6.exitCode, null);
-        originalProcessReallyExit.call(process6, process6.exitCode);
+        process2.exitCode = code || 0;
+        emit("exit", process2.exitCode, null);
+        emit("afterexit", process2.exitCode, null);
+        originalProcessReallyExit.call(process2, process2.exitCode);
       };
-      originalProcessEmit = process6.emit;
+      originalProcessEmit = process2.emit;
       processEmit = function processEmit2(ev, arg) {
         if (ev === "exit" && processOk(global.process)) {
           if (arg !== void 0) {
-            process6.exitCode = arg;
+            process2.exitCode = arg;
           }
           var ret = originalProcessEmit.apply(this, arguments);
-          emit("exit", process6.exitCode, null);
-          emit("afterexit", process6.exitCode, null);
+          emit("exit", process2.exitCode, null);
+          emit("afterexit", process2.exitCode, null);
           return ret;
         } else {
           return originalProcessEmit.apply(this, arguments);
@@ -7091,6 +7091,54 @@ var require_signal_exit = __commonJS({
     var processReallyExit;
     var originalProcessEmit;
     var processEmit;
+  }
+});
+
+// node_modules/.pnpm/restore-cursor@3.1.0/node_modules/restore-cursor/index.js
+var require_restore_cursor = __commonJS({
+  "node_modules/.pnpm/restore-cursor@3.1.0/node_modules/restore-cursor/index.js"(exports, module2) {
+    "use strict";
+    var onetime = require_onetime();
+    var signalExit = require_signal_exit();
+    module2.exports = onetime(() => {
+      signalExit(() => {
+        process.stderr.write("\x1B[?25h");
+      }, { alwaysLast: true });
+    });
+  }
+});
+
+// node_modules/.pnpm/cli-cursor@3.1.0/node_modules/cli-cursor/index.js
+var require_cli_cursor = __commonJS({
+  "node_modules/.pnpm/cli-cursor@3.1.0/node_modules/cli-cursor/index.js"(exports) {
+    "use strict";
+    var restoreCursor = require_restore_cursor();
+    var isHidden = false;
+    exports.show = (writableStream = process.stderr) => {
+      if (!writableStream.isTTY) {
+        return;
+      }
+      isHidden = false;
+      writableStream.write("\x1B[?25h");
+    };
+    exports.hide = (writableStream = process.stderr) => {
+      if (!writableStream.isTTY) {
+        return;
+      }
+      restoreCursor();
+      isHidden = true;
+      writableStream.write("\x1B[?25l");
+    };
+    exports.toggle = (force, writableStream) => {
+      if (force !== void 0) {
+        isHidden = force;
+      }
+      if (isHidden) {
+        exports.show(writableStream);
+      } else {
+        exports.hide(writableStream);
+      }
+    };
   }
 });
 
@@ -8532,6 +8580,64 @@ var require_cli_spinners = __commonJS({
   }
 });
 
+// node_modules/.pnpm/is-unicode-supported@0.1.0/node_modules/is-unicode-supported/index.js
+var require_is_unicode_supported = __commonJS({
+  "node_modules/.pnpm/is-unicode-supported@0.1.0/node_modules/is-unicode-supported/index.js"(exports, module2) {
+    "use strict";
+    module2.exports = () => {
+      if (process.platform !== "win32") {
+        return true;
+      }
+      return Boolean(process.env.CI) || Boolean(process.env.WT_SESSION) || process.env.TERM_PROGRAM === "vscode" || process.env.TERM === "xterm-256color" || process.env.TERM === "alacritty";
+    };
+  }
+});
+
+// node_modules/.pnpm/log-symbols@4.1.0/node_modules/log-symbols/index.js
+var require_log_symbols = __commonJS({
+  "node_modules/.pnpm/log-symbols@4.1.0/node_modules/log-symbols/index.js"(exports, module2) {
+    "use strict";
+    var chalk = require_source();
+    var isUnicodeSupported = require_is_unicode_supported();
+    var main = {
+      info: chalk.blue("\u2139"),
+      success: chalk.green("\u2714"),
+      warning: chalk.yellow("\u26A0"),
+      error: chalk.red("\u2716")
+    };
+    var fallback = {
+      info: chalk.blue("i"),
+      success: chalk.green("\u221A"),
+      warning: chalk.yellow("\u203C"),
+      error: chalk.red("\xD7")
+    };
+    module2.exports = isUnicodeSupported() ? main : fallback;
+  }
+});
+
+// node_modules/.pnpm/ansi-regex@5.0.1/node_modules/ansi-regex/index.js
+var require_ansi_regex = __commonJS({
+  "node_modules/.pnpm/ansi-regex@5.0.1/node_modules/ansi-regex/index.js"(exports, module2) {
+    "use strict";
+    module2.exports = ({ onlyFirst = false } = {}) => {
+      const pattern = [
+        "[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)",
+        "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))"
+      ].join("|");
+      return new RegExp(pattern, onlyFirst ? void 0 : "g");
+    };
+  }
+});
+
+// node_modules/.pnpm/strip-ansi@6.0.1/node_modules/strip-ansi/index.js
+var require_strip_ansi = __commonJS({
+  "node_modules/.pnpm/strip-ansi@6.0.1/node_modules/strip-ansi/index.js"(exports, module2) {
+    "use strict";
+    var ansiRegex = require_ansi_regex();
+    module2.exports = (string) => typeof string === "string" ? string.replace(ansiRegex(), "") : string;
+  }
+});
+
 // node_modules/.pnpm/clone@1.0.4/node_modules/clone/clone.js
 var require_clone = __commonJS({
   "node_modules/.pnpm/clone@1.0.4/node_modules/clone/clone.js"(exports, module2) {
@@ -8558,7 +8664,7 @@ var require_clone = __commonJS({
           if (depth2 == 0)
             return parent2;
           var child;
-          var proto2;
+          var proto;
           if (typeof parent2 != "object") {
             return parent2;
           }
@@ -8580,11 +8686,11 @@ var require_clone = __commonJS({
             return child;
           } else {
             if (typeof prototype == "undefined") {
-              proto2 = Object.getPrototypeOf(parent2);
-              child = Object.create(proto2);
+              proto = Object.getPrototypeOf(parent2);
+              child = Object.create(proto);
             } else {
               child = Object.create(prototype);
-              proto2 = prototype;
+              proto = prototype;
             }
           }
           if (circular) {
@@ -8597,8 +8703,8 @@ var require_clone = __commonJS({
           }
           for (var i in parent2) {
             var attrs;
-            if (proto2) {
-              attrs = Object.getOwnPropertyDescriptor(proto2, i);
+            if (proto) {
+              attrs = Object.getOwnPropertyDescriptor(proto, i);
             }
             if (attrs && attrs.set == null) {
               continue;
@@ -8833,28 +8939,28 @@ var require_wcwidth = __commonJS({
       nul: 0,
       control: 0
     };
-    module2.exports = function wcwidth3(str) {
+    module2.exports = function wcwidth2(str) {
       return wcswidth(str, DEFAULTS);
     };
     module2.exports.config = function(opts) {
       opts = defaults(opts || {}, DEFAULTS);
-      return function wcwidth3(str) {
+      return function wcwidth2(str) {
         return wcswidth(str, opts);
       };
     };
     function wcswidth(str, opts) {
       if (typeof str !== "string")
-        return wcwidth2(str, opts);
+        return wcwidth(str, opts);
       var s = 0;
       for (var i = 0; i < str.length; i++) {
-        var n = wcwidth2(str.charCodeAt(i), opts);
+        var n = wcwidth(str.charCodeAt(i), opts);
         if (n < 0)
           return -1;
         s += n;
       }
       return s;
     }
-    function wcwidth2(ucs, opts) {
+    function wcwidth(ucs, opts) {
       if (ucs === 0)
         return opts.nul;
       if (ucs < 32 || ucs >= 127 && ucs < 160)
@@ -8880,6 +8986,16 @@ var require_wcwidth = __commonJS({
       }
       return false;
     }
+  }
+});
+
+// node_modules/.pnpm/is-interactive@1.0.0/node_modules/is-interactive/index.js
+var require_is_interactive = __commonJS({
+  "node_modules/.pnpm/is-interactive@1.0.0/node_modules/is-interactive/index.js"(exports, module2) {
+    "use strict";
+    module2.exports = ({ stream = process.stdout } = {}) => {
+      return Boolean(stream && stream.isTTY && process.env.TERM !== "dumb" && !("CI" in process.env));
+    };
   }
 });
 
@@ -11719,9 +11835,9 @@ var require_readable = __commonJS({
   }
 });
 
-// node_modules/.pnpm/bl@5.0.0/node_modules/bl/BufferList.js
+// node_modules/.pnpm/bl@4.1.0/node_modules/bl/BufferList.js
 var require_BufferList = __commonJS({
-  "node_modules/.pnpm/bl@5.0.0/node_modules/bl/BufferList.js"(exports, module2) {
+  "node_modules/.pnpm/bl@4.1.0/node_modules/bl/BufferList.js"(exports, module2) {
     "use strict";
     var { Buffer: Buffer2 } = require("buffer");
     var symbol = Symbol.for("BufferList");
@@ -12023,16 +12139,16 @@ var require_BufferList = __commonJS({
   }
 });
 
-// node_modules/.pnpm/bl@5.0.0/node_modules/bl/bl.js
+// node_modules/.pnpm/bl@4.1.0/node_modules/bl/bl.js
 var require_bl = __commonJS({
-  "node_modules/.pnpm/bl@5.0.0/node_modules/bl/bl.js"(exports, module2) {
+  "node_modules/.pnpm/bl@4.1.0/node_modules/bl/bl.js"(exports, module2) {
     "use strict";
     var DuplexStream = require_readable().Duplex;
     var inherits = require_inherits();
     var BufferList = require_BufferList();
-    function BufferListStream2(callback) {
-      if (!(this instanceof BufferListStream2)) {
-        return new BufferListStream2(callback);
+    function BufferListStream(callback) {
+      if (!(this instanceof BufferListStream)) {
+        return new BufferListStream(callback);
       }
       if (typeof callback === "function") {
         this._callback = callback;
@@ -12053,18 +12169,18 @@ var require_bl = __commonJS({
       BufferList._init.call(this, callback);
       DuplexStream.call(this);
     }
-    inherits(BufferListStream2, DuplexStream);
-    Object.assign(BufferListStream2.prototype, BufferList.prototype);
-    BufferListStream2.prototype._new = function _new(callback) {
-      return new BufferListStream2(callback);
+    inherits(BufferListStream, DuplexStream);
+    Object.assign(BufferListStream.prototype, BufferList.prototype);
+    BufferListStream.prototype._new = function _new(callback) {
+      return new BufferListStream(callback);
     };
-    BufferListStream2.prototype._write = function _write(buf, encoding, callback) {
+    BufferListStream.prototype._write = function _write(buf, encoding, callback) {
       this._appendBuffer(buf);
       if (typeof callback === "function") {
         callback();
       }
     };
-    BufferListStream2.prototype._read = function _read(size) {
+    BufferListStream.prototype._read = function _read(size) {
       if (!this.length) {
         return this.push(null);
       }
@@ -12072,25 +12188,350 @@ var require_bl = __commonJS({
       this.push(this.slice(0, size));
       this.consume(size);
     };
-    BufferListStream2.prototype.end = function end(chunk) {
+    BufferListStream.prototype.end = function end(chunk) {
       DuplexStream.prototype.end.call(this, chunk);
       if (this._callback) {
         this._callback(null, this.slice());
         this._callback = null;
       }
     };
-    BufferListStream2.prototype._destroy = function _destroy(err, cb) {
+    BufferListStream.prototype._destroy = function _destroy(err, cb) {
       this._bufs.length = 0;
       this.length = 0;
       cb(err);
     };
-    BufferListStream2.prototype._isBufferList = function _isBufferList(b) {
-      return b instanceof BufferListStream2 || b instanceof BufferList || BufferListStream2.isBufferList(b);
+    BufferListStream.prototype._isBufferList = function _isBufferList(b) {
+      return b instanceof BufferListStream || b instanceof BufferList || BufferListStream.isBufferList(b);
     };
-    BufferListStream2.isBufferList = BufferList.isBufferList;
-    module2.exports = BufferListStream2;
-    module2.exports.BufferListStream = BufferListStream2;
+    BufferListStream.isBufferList = BufferList.isBufferList;
+    module2.exports = BufferListStream;
+    module2.exports.BufferListStream = BufferListStream;
     module2.exports.BufferList = BufferList;
+  }
+});
+
+// node_modules/.pnpm/ora@5.4.1/node_modules/ora/index.js
+var require_ora = __commonJS({
+  "node_modules/.pnpm/ora@5.4.1/node_modules/ora/index.js"(exports, module2) {
+    "use strict";
+    var readline = require("readline");
+    var chalk = require_source();
+    var cliCursor = require_cli_cursor();
+    var cliSpinners = require_cli_spinners();
+    var logSymbols = require_log_symbols();
+    var stripAnsi = require_strip_ansi();
+    var wcwidth = require_wcwidth();
+    var isInteractive = require_is_interactive();
+    var isUnicodeSupported = require_is_unicode_supported();
+    var { BufferListStream } = require_bl();
+    var TEXT = Symbol("text");
+    var PREFIX_TEXT = Symbol("prefixText");
+    var ASCII_ETX_CODE = 3;
+    var StdinDiscarder = class {
+      constructor() {
+        this.requests = 0;
+        this.mutedStream = new BufferListStream();
+        this.mutedStream.pipe(process.stdout);
+        const self2 = this;
+        this.ourEmit = function(event, data, ...args) {
+          const { stdin } = process;
+          if (self2.requests > 0 || stdin.emit === self2.ourEmit) {
+            if (event === "keypress") {
+              return;
+            }
+            if (event === "data" && data.includes(ASCII_ETX_CODE)) {
+              process.emit("SIGINT");
+            }
+            Reflect.apply(self2.oldEmit, this, [event, data, ...args]);
+          } else {
+            Reflect.apply(process.stdin.emit, this, [event, data, ...args]);
+          }
+        };
+      }
+      start() {
+        this.requests++;
+        if (this.requests === 1) {
+          this.realStart();
+        }
+      }
+      stop() {
+        if (this.requests <= 0) {
+          throw new Error("`stop` called more times than `start`");
+        }
+        this.requests--;
+        if (this.requests === 0) {
+          this.realStop();
+        }
+      }
+      realStart() {
+        if (process.platform === "win32") {
+          return;
+        }
+        this.rl = readline.createInterface({
+          input: process.stdin,
+          output: this.mutedStream
+        });
+        this.rl.on("SIGINT", () => {
+          if (process.listenerCount("SIGINT") === 0) {
+            process.emit("SIGINT");
+          } else {
+            this.rl.close();
+            process.kill(process.pid, "SIGINT");
+          }
+        });
+      }
+      realStop() {
+        if (process.platform === "win32") {
+          return;
+        }
+        this.rl.close();
+        this.rl = void 0;
+      }
+    };
+    var stdinDiscarder;
+    var Ora = class {
+      constructor(options2) {
+        if (!stdinDiscarder) {
+          stdinDiscarder = new StdinDiscarder();
+        }
+        if (typeof options2 === "string") {
+          options2 = {
+            text: options2
+          };
+        }
+        this.options = {
+          text: "",
+          color: "cyan",
+          stream: process.stderr,
+          discardStdin: true,
+          ...options2
+        };
+        this.spinner = this.options.spinner;
+        this.color = this.options.color;
+        this.hideCursor = this.options.hideCursor !== false;
+        this.interval = this.options.interval || this.spinner.interval || 100;
+        this.stream = this.options.stream;
+        this.id = void 0;
+        this.isEnabled = typeof this.options.isEnabled === "boolean" ? this.options.isEnabled : isInteractive({ stream: this.stream });
+        this.isSilent = typeof this.options.isSilent === "boolean" ? this.options.isSilent : false;
+        this.text = this.options.text;
+        this.prefixText = this.options.prefixText;
+        this.linesToClear = 0;
+        this.indent = this.options.indent;
+        this.discardStdin = this.options.discardStdin;
+        this.isDiscardingStdin = false;
+      }
+      get indent() {
+        return this._indent;
+      }
+      set indent(indent = 0) {
+        if (!(indent >= 0 && Number.isInteger(indent))) {
+          throw new Error("The `indent` option must be an integer from 0 and up");
+        }
+        this._indent = indent;
+      }
+      _updateInterval(interval) {
+        if (interval !== void 0) {
+          this.interval = interval;
+        }
+      }
+      get spinner() {
+        return this._spinner;
+      }
+      set spinner(spinner) {
+        this.frameIndex = 0;
+        if (typeof spinner === "object") {
+          if (spinner.frames === void 0) {
+            throw new Error("The given spinner must have a `frames` property");
+          }
+          this._spinner = spinner;
+        } else if (!isUnicodeSupported()) {
+          this._spinner = cliSpinners.line;
+        } else if (spinner === void 0) {
+          this._spinner = cliSpinners.dots;
+        } else if (spinner !== "default" && cliSpinners[spinner]) {
+          this._spinner = cliSpinners[spinner];
+        } else {
+          throw new Error(`There is no built-in spinner named '${spinner}'. See https://github.com/sindresorhus/cli-spinners/blob/main/spinners.json for a full list.`);
+        }
+        this._updateInterval(this._spinner.interval);
+      }
+      get text() {
+        return this[TEXT];
+      }
+      set text(value) {
+        this[TEXT] = value;
+        this.updateLineCount();
+      }
+      get prefixText() {
+        return this[PREFIX_TEXT];
+      }
+      set prefixText(value) {
+        this[PREFIX_TEXT] = value;
+        this.updateLineCount();
+      }
+      get isSpinning() {
+        return this.id !== void 0;
+      }
+      getFullPrefixText(prefixText = this[PREFIX_TEXT], postfix = " ") {
+        if (typeof prefixText === "string") {
+          return prefixText + postfix;
+        }
+        if (typeof prefixText === "function") {
+          return prefixText() + postfix;
+        }
+        return "";
+      }
+      updateLineCount() {
+        const columns = this.stream.columns || 80;
+        const fullPrefixText = this.getFullPrefixText(this.prefixText, "-");
+        this.lineCount = 0;
+        for (const line of stripAnsi(fullPrefixText + "--" + this[TEXT]).split("\n")) {
+          this.lineCount += Math.max(1, Math.ceil(wcwidth(line) / columns));
+        }
+      }
+      get isEnabled() {
+        return this._isEnabled && !this.isSilent;
+      }
+      set isEnabled(value) {
+        if (typeof value !== "boolean") {
+          throw new TypeError("The `isEnabled` option must be a boolean");
+        }
+        this._isEnabled = value;
+      }
+      get isSilent() {
+        return this._isSilent;
+      }
+      set isSilent(value) {
+        if (typeof value !== "boolean") {
+          throw new TypeError("The `isSilent` option must be a boolean");
+        }
+        this._isSilent = value;
+      }
+      frame() {
+        const { frames } = this.spinner;
+        let frame = frames[this.frameIndex];
+        if (this.color) {
+          frame = chalk[this.color](frame);
+        }
+        this.frameIndex = ++this.frameIndex % frames.length;
+        const fullPrefixText = typeof this.prefixText === "string" && this.prefixText !== "" ? this.prefixText + " " : "";
+        const fullText = typeof this.text === "string" ? " " + this.text : "";
+        return fullPrefixText + frame + fullText;
+      }
+      clear() {
+        if (!this.isEnabled || !this.stream.isTTY) {
+          return this;
+        }
+        for (let i = 0; i < this.linesToClear; i++) {
+          if (i > 0) {
+            this.stream.moveCursor(0, -1);
+          }
+          this.stream.clearLine();
+          this.stream.cursorTo(this.indent);
+        }
+        this.linesToClear = 0;
+        return this;
+      }
+      render() {
+        if (this.isSilent) {
+          return this;
+        }
+        this.clear();
+        this.stream.write(this.frame());
+        this.linesToClear = this.lineCount;
+        return this;
+      }
+      start(text) {
+        if (text) {
+          this.text = text;
+        }
+        if (this.isSilent) {
+          return this;
+        }
+        if (!this.isEnabled) {
+          if (this.text) {
+            this.stream.write(`- ${this.text}
+`);
+          }
+          return this;
+        }
+        if (this.isSpinning) {
+          return this;
+        }
+        if (this.hideCursor) {
+          cliCursor.hide(this.stream);
+        }
+        if (this.discardStdin && process.stdin.isTTY) {
+          this.isDiscardingStdin = true;
+          stdinDiscarder.start();
+        }
+        this.render();
+        this.id = setInterval(this.render.bind(this), this.interval);
+        return this;
+      }
+      stop() {
+        if (!this.isEnabled) {
+          return this;
+        }
+        clearInterval(this.id);
+        this.id = void 0;
+        this.frameIndex = 0;
+        this.clear();
+        if (this.hideCursor) {
+          cliCursor.show(this.stream);
+        }
+        if (this.discardStdin && process.stdin.isTTY && this.isDiscardingStdin) {
+          stdinDiscarder.stop();
+          this.isDiscardingStdin = false;
+        }
+        return this;
+      }
+      succeed(text) {
+        return this.stopAndPersist({ symbol: logSymbols.success, text });
+      }
+      fail(text) {
+        return this.stopAndPersist({ symbol: logSymbols.error, text });
+      }
+      warn(text) {
+        return this.stopAndPersist({ symbol: logSymbols.warning, text });
+      }
+      info(text) {
+        return this.stopAndPersist({ symbol: logSymbols.info, text });
+      }
+      stopAndPersist(options2 = {}) {
+        if (this.isSilent) {
+          return this;
+        }
+        const prefixText = options2.prefixText || this.prefixText;
+        const text = options2.text || this.text;
+        const fullText = typeof text === "string" ? " " + text : "";
+        this.stop();
+        this.stream.write(`${this.getFullPrefixText(prefixText, " ")}${options2.symbol || " "}${fullText}
+`);
+        return this;
+      }
+    };
+    var oraFactory = function(options2) {
+      return new Ora(options2);
+    };
+    module2.exports = oraFactory;
+    module2.exports.promise = (action, options2) => {
+      if (typeof action.then !== "function") {
+        throw new TypeError("Parameter `action` must be a Promise");
+      }
+      const spinner = new Ora(options2);
+      spinner.start();
+      (async () => {
+        try {
+          await action;
+          spinner.succeed();
+        } catch {
+          spinner.fail();
+        }
+      })();
+      return spinner;
+    };
   }
 });
 
@@ -12207,878 +12648,9 @@ function getCommand(packageManager, scriptName) {
 
 // index.js
 var import_promise = __toESM(require_promise(), 1);
-
-// node_modules/.pnpm/ora@6.0.1/node_modules/ora/index.js
-var import_node_process4 = __toESM(require("node:process"), 1);
-var import_node_readline = __toESM(require("node:readline"), 1);
-var import_chalk2 = __toESM(require_source(), 1);
-
-// node_modules/.pnpm/cli-cursor@4.0.0/node_modules/cli-cursor/index.js
-var import_node_process2 = __toESM(require("node:process"), 1);
-
-// node_modules/.pnpm/restore-cursor@4.0.0/node_modules/restore-cursor/index.js
-var import_node_process = __toESM(require("node:process"), 1);
-var import_onetime = __toESM(require_onetime(), 1);
-var import_signal_exit = __toESM(require_signal_exit(), 1);
-var restoreCursor = (0, import_onetime.default)(() => {
-  (0, import_signal_exit.default)(() => {
-    import_node_process.default.stderr.write("\x1B[?25h");
-  }, { alwaysLast: true });
-});
-var restore_cursor_default = restoreCursor;
-
-// node_modules/.pnpm/cli-cursor@4.0.0/node_modules/cli-cursor/index.js
-var isHidden = false;
-var cliCursor = {};
-cliCursor.show = (writableStream = import_node_process2.default.stderr) => {
-  if (!writableStream.isTTY) {
-    return;
-  }
-  isHidden = false;
-  writableStream.write("\x1B[?25h");
-};
-cliCursor.hide = (writableStream = import_node_process2.default.stderr) => {
-  if (!writableStream.isTTY) {
-    return;
-  }
-  restore_cursor_default();
-  isHidden = true;
-  writableStream.write("\x1B[?25l");
-};
-cliCursor.toggle = (force, writableStream) => {
-  if (force !== void 0) {
-    isHidden = force;
-  }
-  if (isHidden) {
-    cliCursor.show(writableStream);
-  } else {
-    cliCursor.hide(writableStream);
-  }
-};
-var cli_cursor_default = cliCursor;
-
-// node_modules/.pnpm/ora@6.0.1/node_modules/ora/index.js
-var import_cli_spinners = __toESM(require_cli_spinners(), 1);
-
-// node_modules/.pnpm/chalk@5.0.0/node_modules/chalk/source/vendor/ansi-styles/index.js
-var ANSI_BACKGROUND_OFFSET = 10;
-var wrapAnsi16 = (offset = 0) => (code) => `\x1B[${code + offset}m`;
-var wrapAnsi256 = (offset = 0) => (code) => `\x1B[${38 + offset};5;${code}m`;
-var wrapAnsi16m = (offset = 0) => (red2, green2, blue2) => `\x1B[${38 + offset};2;${red2};${green2};${blue2}m`;
-function assembleStyles() {
-  const codes = /* @__PURE__ */ new Map();
-  const styles2 = {
-    modifier: {
-      reset: [0, 0],
-      bold: [1, 22],
-      dim: [2, 22],
-      italic: [3, 23],
-      underline: [4, 24],
-      overline: [53, 55],
-      inverse: [7, 27],
-      hidden: [8, 28],
-      strikethrough: [9, 29]
-    },
-    color: {
-      black: [30, 39],
-      red: [31, 39],
-      green: [32, 39],
-      yellow: [33, 39],
-      blue: [34, 39],
-      magenta: [35, 39],
-      cyan: [36, 39],
-      white: [37, 39],
-      blackBright: [90, 39],
-      redBright: [91, 39],
-      greenBright: [92, 39],
-      yellowBright: [93, 39],
-      blueBright: [94, 39],
-      magentaBright: [95, 39],
-      cyanBright: [96, 39],
-      whiteBright: [97, 39]
-    },
-    bgColor: {
-      bgBlack: [40, 49],
-      bgRed: [41, 49],
-      bgGreen: [42, 49],
-      bgYellow: [43, 49],
-      bgBlue: [44, 49],
-      bgMagenta: [45, 49],
-      bgCyan: [46, 49],
-      bgWhite: [47, 49],
-      bgBlackBright: [100, 49],
-      bgRedBright: [101, 49],
-      bgGreenBright: [102, 49],
-      bgYellowBright: [103, 49],
-      bgBlueBright: [104, 49],
-      bgMagentaBright: [105, 49],
-      bgCyanBright: [106, 49],
-      bgWhiteBright: [107, 49]
-    }
-  };
-  styles2.color.gray = styles2.color.blackBright;
-  styles2.bgColor.bgGray = styles2.bgColor.bgBlackBright;
-  styles2.color.grey = styles2.color.blackBright;
-  styles2.bgColor.bgGrey = styles2.bgColor.bgBlackBright;
-  for (const [groupName, group] of Object.entries(styles2)) {
-    for (const [styleName, style] of Object.entries(group)) {
-      styles2[styleName] = {
-        open: `\x1B[${style[0]}m`,
-        close: `\x1B[${style[1]}m`
-      };
-      group[styleName] = styles2[styleName];
-      codes.set(style[0], style[1]);
-    }
-    Object.defineProperty(styles2, groupName, {
-      value: group,
-      enumerable: false
-    });
-  }
-  Object.defineProperty(styles2, "codes", {
-    value: codes,
-    enumerable: false
-  });
-  styles2.color.close = "\x1B[39m";
-  styles2.bgColor.close = "\x1B[49m";
-  styles2.color.ansi = wrapAnsi16();
-  styles2.color.ansi256 = wrapAnsi256();
-  styles2.color.ansi16m = wrapAnsi16m();
-  styles2.bgColor.ansi = wrapAnsi16(ANSI_BACKGROUND_OFFSET);
-  styles2.bgColor.ansi256 = wrapAnsi256(ANSI_BACKGROUND_OFFSET);
-  styles2.bgColor.ansi16m = wrapAnsi16m(ANSI_BACKGROUND_OFFSET);
-  Object.defineProperties(styles2, {
-    rgbToAnsi256: {
-      value: (red2, green2, blue2) => {
-        if (red2 === green2 && green2 === blue2) {
-          if (red2 < 8) {
-            return 16;
-          }
-          if (red2 > 248) {
-            return 231;
-          }
-          return Math.round((red2 - 8) / 247 * 24) + 232;
-        }
-        return 16 + 36 * Math.round(red2 / 255 * 5) + 6 * Math.round(green2 / 255 * 5) + Math.round(blue2 / 255 * 5);
-      },
-      enumerable: false
-    },
-    hexToRgb: {
-      value: (hex) => {
-        const matches = /(?<colorString>[a-f\d]{6}|[a-f\d]{3})/i.exec(hex.toString(16));
-        if (!matches) {
-          return [0, 0, 0];
-        }
-        let { colorString } = matches.groups;
-        if (colorString.length === 3) {
-          colorString = [...colorString].map((character) => character + character).join("");
-        }
-        const integer = Number.parseInt(colorString, 16);
-        return [
-          integer >> 16 & 255,
-          integer >> 8 & 255,
-          integer & 255
-        ];
-      },
-      enumerable: false
-    },
-    hexToAnsi256: {
-      value: (hex) => styles2.rgbToAnsi256(...styles2.hexToRgb(hex)),
-      enumerable: false
-    },
-    ansi256ToAnsi: {
-      value: (code) => {
-        if (code < 8) {
-          return 30 + code;
-        }
-        if (code < 16) {
-          return 90 + (code - 8);
-        }
-        let red2;
-        let green2;
-        let blue2;
-        if (code >= 232) {
-          red2 = ((code - 232) * 10 + 8) / 255;
-          green2 = red2;
-          blue2 = red2;
-        } else {
-          code -= 16;
-          const remainder = code % 36;
-          red2 = Math.floor(code / 36) / 5;
-          green2 = Math.floor(remainder / 6) / 5;
-          blue2 = remainder % 6 / 5;
-        }
-        const value = Math.max(red2, green2, blue2) * 2;
-        if (value === 0) {
-          return 30;
-        }
-        let result = 30 + (Math.round(blue2) << 2 | Math.round(green2) << 1 | Math.round(red2));
-        if (value === 2) {
-          result += 60;
-        }
-        return result;
-      },
-      enumerable: false
-    },
-    rgbToAnsi: {
-      value: (red2, green2, blue2) => styles2.ansi256ToAnsi(styles2.rgbToAnsi256(red2, green2, blue2)),
-      enumerable: false
-    },
-    hexToAnsi: {
-      value: (hex) => styles2.ansi256ToAnsi(styles2.hexToAnsi256(hex)),
-      enumerable: false
-    }
-  });
-  return styles2;
-}
-var ansiStyles = assembleStyles();
-var ansi_styles_default = ansiStyles;
-
-// node_modules/.pnpm/chalk@5.0.0/node_modules/chalk/source/vendor/supports-color/index.js
-var import_node_process3 = __toESM(require("node:process"), 1);
-var import_node_os = __toESM(require("node:os"), 1);
-var import_node_tty = __toESM(require("node:tty"), 1);
-function hasFlag(flag, argv = import_node_process3.default.argv) {
-  const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
-  const position = argv.indexOf(prefix + flag);
-  const terminatorPosition = argv.indexOf("--");
-  return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
-}
-var { env } = import_node_process3.default;
-var flagForceColor;
-if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") || hasFlag("color=never")) {
-  flagForceColor = 0;
-} else if (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) {
-  flagForceColor = 1;
-}
-function envForceColor() {
-  if ("FORCE_COLOR" in env) {
-    if (env.FORCE_COLOR === "true") {
-      return 1;
-    }
-    if (env.FORCE_COLOR === "false") {
-      return 0;
-    }
-    return env.FORCE_COLOR.length === 0 ? 1 : Math.min(Number.parseInt(env.FORCE_COLOR, 10), 3);
-  }
-}
-function translateLevel(level) {
-  if (level === 0) {
-    return false;
-  }
-  return {
-    level,
-    hasBasic: true,
-    has256: level >= 2,
-    has16m: level >= 3
-  };
-}
-function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
-  const noFlagForceColor = envForceColor();
-  if (noFlagForceColor !== void 0) {
-    flagForceColor = noFlagForceColor;
-  }
-  const forceColor = sniffFlags ? flagForceColor : noFlagForceColor;
-  if (forceColor === 0) {
-    return 0;
-  }
-  if (sniffFlags) {
-    if (hasFlag("color=16m") || hasFlag("color=full") || hasFlag("color=truecolor")) {
-      return 3;
-    }
-    if (hasFlag("color=256")) {
-      return 2;
-    }
-  }
-  if (haveStream && !streamIsTTY && forceColor === void 0) {
-    return 0;
-  }
-  const min = forceColor || 0;
-  if (env.TERM === "dumb") {
-    return min;
-  }
-  if (import_node_process3.default.platform === "win32") {
-    const osRelease = import_node_os.default.release().split(".");
-    if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
-      return Number(osRelease[2]) >= 14931 ? 3 : 2;
-    }
-    return 1;
-  }
-  if ("CI" in env) {
-    if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI", "GITHUB_ACTIONS", "BUILDKITE", "DRONE"].some((sign) => sign in env) || env.CI_NAME === "codeship") {
-      return 1;
-    }
-    return min;
-  }
-  if ("TEAMCITY_VERSION" in env) {
-    return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env.TEAMCITY_VERSION) ? 1 : 0;
-  }
-  if ("TF_BUILD" in env && "AGENT_NAME" in env) {
-    return 1;
-  }
-  if (env.COLORTERM === "truecolor") {
-    return 3;
-  }
-  if ("TERM_PROGRAM" in env) {
-    const version = Number.parseInt((env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
-    switch (env.TERM_PROGRAM) {
-      case "iTerm.app":
-        return version >= 3 ? 3 : 2;
-      case "Apple_Terminal":
-        return 2;
-    }
-  }
-  if (/-256(color)?$/i.test(env.TERM)) {
-    return 2;
-  }
-  if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env.TERM)) {
-    return 1;
-  }
-  if ("COLORTERM" in env) {
-    return 1;
-  }
-  return min;
-}
-function createSupportsColor(stream, options2 = {}) {
-  const level = _supportsColor(stream, {
-    streamIsTTY: stream && stream.isTTY,
-    ...options2
-  });
-  return translateLevel(level);
-}
-var supportsColor = {
-  stdout: createSupportsColor({ isTTY: import_node_tty.default.isatty(1) }),
-  stderr: createSupportsColor({ isTTY: import_node_tty.default.isatty(2) })
-};
-var supports_color_default = supportsColor;
-
-// node_modules/.pnpm/chalk@5.0.0/node_modules/chalk/source/utilities.js
-function stringReplaceAll(string, substring, replacer) {
-  let index = string.indexOf(substring);
-  if (index === -1) {
-    return string;
-  }
-  const substringLength = substring.length;
-  let endIndex = 0;
-  let returnValue = "";
-  do {
-    returnValue += string.substr(endIndex, index - endIndex) + substring + replacer;
-    endIndex = index + substringLength;
-    index = string.indexOf(substring, endIndex);
-  } while (index !== -1);
-  returnValue += string.slice(endIndex);
-  return returnValue;
-}
-function stringEncaseCRLFWithFirstIndex(string, prefix, postfix, index) {
-  let endIndex = 0;
-  let returnValue = "";
-  do {
-    const gotCR = string[index - 1] === "\r";
-    returnValue += string.substr(endIndex, (gotCR ? index - 1 : index) - endIndex) + prefix + (gotCR ? "\r\n" : "\n") + postfix;
-    endIndex = index + 1;
-    index = string.indexOf("\n", endIndex);
-  } while (index !== -1);
-  returnValue += string.slice(endIndex);
-  return returnValue;
-}
-
-// node_modules/.pnpm/chalk@5.0.0/node_modules/chalk/source/index.js
-var { stdout: stdoutColor, stderr: stderrColor } = supports_color_default;
-var GENERATOR = Symbol("GENERATOR");
-var STYLER = Symbol("STYLER");
-var IS_EMPTY = Symbol("IS_EMPTY");
-var levelMapping = [
-  "ansi",
-  "ansi",
-  "ansi256",
-  "ansi16m"
-];
-var styles = /* @__PURE__ */ Object.create(null);
-var applyOptions = (object, options2 = {}) => {
-  if (options2.level && !(Number.isInteger(options2.level) && options2.level >= 0 && options2.level <= 3)) {
-    throw new Error("The `level` option should be an integer from 0 to 3");
-  }
-  const colorLevel = stdoutColor ? stdoutColor.level : 0;
-  object.level = options2.level === void 0 ? colorLevel : options2.level;
-};
-var chalkFactory = (options2) => {
-  const chalk3 = (...strings) => strings.join(" ");
-  applyOptions(chalk3, options2);
-  Object.setPrototypeOf(chalk3, createChalk.prototype);
-  return chalk3;
-};
-function createChalk(options2) {
-  return chalkFactory(options2);
-}
-Object.setPrototypeOf(createChalk.prototype, Function.prototype);
-for (const [styleName, style] of Object.entries(ansi_styles_default)) {
-  styles[styleName] = {
-    get() {
-      const builder = createBuilder(this, createStyler(style.open, style.close, this[STYLER]), this[IS_EMPTY]);
-      Object.defineProperty(this, styleName, { value: builder });
-      return builder;
-    }
-  };
-}
-styles.visible = {
-  get() {
-    const builder = createBuilder(this, this[STYLER], true);
-    Object.defineProperty(this, "visible", { value: builder });
-    return builder;
-  }
-};
-var getModelAnsi = (model, level, type, ...arguments_) => {
-  if (model === "rgb") {
-    if (level === "ansi16m") {
-      return ansi_styles_default[type].ansi16m(...arguments_);
-    }
-    if (level === "ansi256") {
-      return ansi_styles_default[type].ansi256(ansi_styles_default.rgbToAnsi256(...arguments_));
-    }
-    return ansi_styles_default[type].ansi(ansi_styles_default.rgbToAnsi(...arguments_));
-  }
-  if (model === "hex") {
-    return getModelAnsi("rgb", level, type, ...ansi_styles_default.hexToRgb(...arguments_));
-  }
-  return ansi_styles_default[type][model](...arguments_);
-};
-var usedModels = ["rgb", "hex", "ansi256"];
-for (const model of usedModels) {
-  styles[model] = {
-    get() {
-      const { level } = this;
-      return function(...arguments_) {
-        const styler = createStyler(getModelAnsi(model, levelMapping[level], "color", ...arguments_), ansi_styles_default.color.close, this[STYLER]);
-        return createBuilder(this, styler, this[IS_EMPTY]);
-      };
-    }
-  };
-  const bgModel = "bg" + model[0].toUpperCase() + model.slice(1);
-  styles[bgModel] = {
-    get() {
-      const { level } = this;
-      return function(...arguments_) {
-        const styler = createStyler(getModelAnsi(model, levelMapping[level], "bgColor", ...arguments_), ansi_styles_default.bgColor.close, this[STYLER]);
-        return createBuilder(this, styler, this[IS_EMPTY]);
-      };
-    }
-  };
-}
-var proto = Object.defineProperties(() => {
-}, {
-  ...styles,
-  level: {
-    enumerable: true,
-    get() {
-      return this[GENERATOR].level;
-    },
-    set(level) {
-      this[GENERATOR].level = level;
-    }
-  }
-});
-var createStyler = (open, close, parent) => {
-  let openAll;
-  let closeAll;
-  if (parent === void 0) {
-    openAll = open;
-    closeAll = close;
-  } else {
-    openAll = parent.openAll + open;
-    closeAll = close + parent.closeAll;
-  }
-  return {
-    open,
-    close,
-    openAll,
-    closeAll,
-    parent
-  };
-};
-var createBuilder = (self2, _styler, _isEmpty) => {
-  const builder = (...arguments_) => applyStyle(builder, arguments_.length === 1 ? "" + arguments_[0] : arguments_.join(" "));
-  Object.setPrototypeOf(builder, proto);
-  builder[GENERATOR] = self2;
-  builder[STYLER] = _styler;
-  builder[IS_EMPTY] = _isEmpty;
-  return builder;
-};
-var applyStyle = (self2, string) => {
-  if (self2.level <= 0 || !string) {
-    return self2[IS_EMPTY] ? "" : string;
-  }
-  let styler = self2[STYLER];
-  if (styler === void 0) {
-    return string;
-  }
-  const { openAll, closeAll } = styler;
-  if (string.includes("\x1B")) {
-    while (styler !== void 0) {
-      string = stringReplaceAll(string, styler.close, styler.open);
-      styler = styler.parent;
-    }
-  }
-  const lfIndex = string.indexOf("\n");
-  if (lfIndex !== -1) {
-    string = stringEncaseCRLFWithFirstIndex(string, closeAll, openAll, lfIndex);
-  }
-  return openAll + string + closeAll;
-};
-Object.defineProperties(createChalk.prototype, styles);
-var chalk = createChalk();
-var chalkStderr = createChalk({ level: stderrColor ? stderrColor.level : 0 });
-var source_default = chalk;
-
-// node_modules/.pnpm/is-unicode-supported@1.1.0/node_modules/is-unicode-supported/index.js
-function isUnicodeSupported() {
-  if (process.platform !== "win32") {
-    return process.env.TERM !== "linux";
-  }
-  return Boolean(process.env.CI) || Boolean(process.env.WT_SESSION) || process.env.ConEmuTask === "{cmd::Cmder}" || process.env.TERM_PROGRAM === "vscode" || process.env.TERM === "xterm-256color" || process.env.TERM === "alacritty";
-}
-
-// node_modules/.pnpm/log-symbols@5.1.0/node_modules/log-symbols/index.js
-var main = {
-  info: source_default.blue("\u2139"),
-  success: source_default.green("\u2714"),
-  warning: source_default.yellow("\u26A0"),
-  error: source_default.red("\u2716")
-};
-var fallback = {
-  info: source_default.blue("i"),
-  success: source_default.green("\u221A"),
-  warning: source_default.yellow("\u203C"),
-  error: source_default.red("\xD7")
-};
-var logSymbols = isUnicodeSupported() ? main : fallback;
-var log_symbols_default = logSymbols;
-
-// node_modules/.pnpm/ansi-regex@6.0.1/node_modules/ansi-regex/index.js
-function ansiRegex({ onlyFirst = false } = {}) {
-  const pattern = [
-    "[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)",
-    "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))"
-  ].join("|");
-  return new RegExp(pattern, onlyFirst ? void 0 : "g");
-}
-
-// node_modules/.pnpm/strip-ansi@7.0.1/node_modules/strip-ansi/index.js
-function stripAnsi(string) {
-  if (typeof string !== "string") {
-    throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
-  }
-  return string.replace(ansiRegex(), "");
-}
-
-// node_modules/.pnpm/ora@6.0.1/node_modules/ora/index.js
-var import_wcwidth = __toESM(require_wcwidth(), 1);
-
-// node_modules/.pnpm/is-interactive@2.0.0/node_modules/is-interactive/index.js
-function isInteractive({ stream = process.stdout } = {}) {
-  return Boolean(stream && stream.isTTY && process.env.TERM !== "dumb" && !("CI" in process.env));
-}
-
-// node_modules/.pnpm/ora@6.0.1/node_modules/ora/index.js
-var import_bl = __toESM(require_bl(), 1);
-var TEXT = Symbol("text");
-var PREFIX_TEXT = Symbol("prefixText");
-var ASCII_ETX_CODE = 3;
-var StdinDiscarder = class {
-  constructor() {
-    this.requests = 0;
-    this.mutedStream = new import_bl.BufferListStream();
-    this.mutedStream.pipe(import_node_process4.default.stdout);
-    const self2 = this;
-    this.ourEmit = function(event, data, ...args) {
-      const { stdin } = import_node_process4.default;
-      if (self2.requests > 0 || stdin.emit === self2.ourEmit) {
-        if (event === "keypress") {
-          return;
-        }
-        if (event === "data" && data.includes(ASCII_ETX_CODE)) {
-          import_node_process4.default.emit("SIGINT");
-        }
-        Reflect.apply(self2.oldEmit, this, [event, data, ...args]);
-      } else {
-        Reflect.apply(import_node_process4.default.stdin.emit, this, [event, data, ...args]);
-      }
-    };
-  }
-  start() {
-    this.requests++;
-    if (this.requests === 1) {
-      this.realStart();
-    }
-  }
-  stop() {
-    if (this.requests <= 0) {
-      throw new Error("`stop` called more times than `start`");
-    }
-    this.requests--;
-    if (this.requests === 0) {
-      this.realStop();
-    }
-  }
-  realStart() {
-    if (import_node_process4.default.platform === "win32") {
-      return;
-    }
-    this.rl = import_node_readline.default.createInterface({
-      input: import_node_process4.default.stdin,
-      output: this.mutedStream
-    });
-    this.rl.on("SIGINT", () => {
-      if (import_node_process4.default.listenerCount("SIGINT") === 0) {
-        import_node_process4.default.emit("SIGINT");
-      } else {
-        this.rl.close();
-        import_node_process4.default.kill(import_node_process4.default.pid, "SIGINT");
-      }
-    });
-  }
-  realStop() {
-    if (import_node_process4.default.platform === "win32") {
-      return;
-    }
-    this.rl.close();
-    this.rl = void 0;
-  }
-};
-var stdinDiscarder;
-var Ora = class {
-  constructor(options2) {
-    if (!stdinDiscarder) {
-      stdinDiscarder = new StdinDiscarder();
-    }
-    if (typeof options2 === "string") {
-      options2 = {
-        text: options2
-      };
-    }
-    this.options = {
-      text: "",
-      color: "cyan",
-      stream: import_node_process4.default.stderr,
-      discardStdin: true,
-      ...options2
-    };
-    this.spinner = this.options.spinner;
-    this.color = this.options.color;
-    this.hideCursor = this.options.hideCursor !== false;
-    this.interval = this.options.interval || this.spinner.interval || 100;
-    this.stream = this.options.stream;
-    this.id = void 0;
-    this.isEnabled = typeof this.options.isEnabled === "boolean" ? this.options.isEnabled : isInteractive({ stream: this.stream });
-    this.isSilent = typeof this.options.isSilent === "boolean" ? this.options.isSilent : false;
-    this.text = this.options.text;
-    this.prefixText = this.options.prefixText;
-    this.linesToClear = 0;
-    this.indent = this.options.indent;
-    this.discardStdin = this.options.discardStdin;
-    this.isDiscardingStdin = false;
-  }
-  get indent() {
-    return this._indent;
-  }
-  set indent(indent = 0) {
-    if (!(indent >= 0 && Number.isInteger(indent))) {
-      throw new Error("The `indent` option must be an integer from 0 and up");
-    }
-    this._indent = indent;
-    this.updateLineCount();
-  }
-  _updateInterval(interval) {
-    if (interval !== void 0) {
-      this.interval = interval;
-    }
-  }
-  get spinner() {
-    return this._spinner;
-  }
-  set spinner(spinner) {
-    this.frameIndex = 0;
-    if (typeof spinner === "object") {
-      if (spinner.frames === void 0) {
-        throw new Error("The given spinner must have a `frames` property");
-      }
-      this._spinner = spinner;
-    } else if (!isUnicodeSupported()) {
-      this._spinner = import_cli_spinners.default.line;
-    } else if (spinner === void 0) {
-      this._spinner = import_cli_spinners.default.dots;
-    } else if (spinner !== "default" && import_cli_spinners.default[spinner]) {
-      this._spinner = import_cli_spinners.default[spinner];
-    } else {
-      throw new Error(`There is no built-in spinner named '${spinner}'. See https://github.com/sindresorhus/cli-spinners/blob/main/spinners.json for a full list.`);
-    }
-    this._updateInterval(this._spinner.interval);
-  }
-  get text() {
-    return this[TEXT];
-  }
-  set text(value) {
-    this[TEXT] = value;
-    this.updateLineCount();
-  }
-  get prefixText() {
-    return this[PREFIX_TEXT];
-  }
-  set prefixText(value) {
-    this[PREFIX_TEXT] = value;
-    this.updateLineCount();
-  }
-  get isSpinning() {
-    return this.id !== void 0;
-  }
-  getFullPrefixText(prefixText = this[PREFIX_TEXT], postfix = " ") {
-    if (typeof prefixText === "string") {
-      return prefixText + postfix;
-    }
-    if (typeof prefixText === "function") {
-      return prefixText() + postfix;
-    }
-    return "";
-  }
-  updateLineCount() {
-    const columns = this.stream.columns || 80;
-    const fullPrefixText = this.getFullPrefixText(this.prefixText, "-");
-    this.lineCount = 0;
-    for (const line of stripAnsi(" ".repeat(this.indent) + fullPrefixText + "--" + this[TEXT]).split("\n")) {
-      this.lineCount += Math.max(1, Math.ceil((0, import_wcwidth.default)(line) / columns));
-    }
-  }
-  get isEnabled() {
-    return this._isEnabled && !this.isSilent;
-  }
-  set isEnabled(value) {
-    if (typeof value !== "boolean") {
-      throw new TypeError("The `isEnabled` option must be a boolean");
-    }
-    this._isEnabled = value;
-  }
-  get isSilent() {
-    return this._isSilent;
-  }
-  set isSilent(value) {
-    if (typeof value !== "boolean") {
-      throw new TypeError("The `isSilent` option must be a boolean");
-    }
-    this._isSilent = value;
-  }
-  frame() {
-    const { frames } = this.spinner;
-    let frame = frames[this.frameIndex];
-    if (this.color) {
-      frame = import_chalk2.default[this.color](frame);
-    }
-    this.frameIndex = ++this.frameIndex % frames.length;
-    const fullPrefixText = typeof this.prefixText === "string" && this.prefixText !== "" ? this.prefixText + " " : "";
-    const fullText = typeof this.text === "string" ? " " + this.text : "";
-    return fullPrefixText + frame + fullText;
-  }
-  clear() {
-    if (!this.isEnabled || !this.stream.isTTY) {
-      return this;
-    }
-    this.stream.cursorTo(0);
-    for (let index = 0; index < this.linesToClear; index++) {
-      if (index > 0) {
-        this.stream.moveCursor(0, -1);
-      }
-      this.stream.clearLine(1);
-    }
-    if (this.indent || this.lastIndent !== this.indent) {
-      this.stream.cursorTo(this.indent);
-    }
-    this.lastIndent = this.indent;
-    this.linesToClear = 0;
-    return this;
-  }
-  render() {
-    if (this.isSilent) {
-      return this;
-    }
-    this.clear();
-    this.stream.write(this.frame());
-    this.linesToClear = this.lineCount;
-    return this;
-  }
-  start(text) {
-    if (text) {
-      this.text = text;
-    }
-    if (this.isSilent) {
-      return this;
-    }
-    if (!this.isEnabled) {
-      if (this.text) {
-        this.stream.write(`- ${this.text}
-`);
-      }
-      return this;
-    }
-    if (this.isSpinning) {
-      return this;
-    }
-    if (this.hideCursor) {
-      cli_cursor_default.hide(this.stream);
-    }
-    if (this.discardStdin && import_node_process4.default.stdin.isTTY) {
-      this.isDiscardingStdin = true;
-      stdinDiscarder.start();
-    }
-    this.render();
-    this.id = setInterval(this.render.bind(this), this.interval);
-    return this;
-  }
-  stop() {
-    if (!this.isEnabled) {
-      return this;
-    }
-    clearInterval(this.id);
-    this.id = void 0;
-    this.frameIndex = 0;
-    this.clear();
-    if (this.hideCursor) {
-      cli_cursor_default.show(this.stream);
-    }
-    if (this.discardStdin && import_node_process4.default.stdin.isTTY && this.isDiscardingStdin) {
-      stdinDiscarder.stop();
-      this.isDiscardingStdin = false;
-    }
-    return this;
-  }
-  succeed(text) {
-    return this.stopAndPersist({ symbol: log_symbols_default.success, text });
-  }
-  fail(text) {
-    return this.stopAndPersist({ symbol: log_symbols_default.error, text });
-  }
-  warn(text) {
-    return this.stopAndPersist({ symbol: log_symbols_default.warning, text });
-  }
-  info(text) {
-    return this.stopAndPersist({ symbol: log_symbols_default.info, text });
-  }
-  stopAndPersist(options2 = {}) {
-    if (this.isSilent) {
-      return this;
-    }
-    const prefixText = options2.prefixText || this.prefixText;
-    const text = options2.text || this.text;
-    const fullText = typeof text === "string" ? " " + text : "";
-    this.stop();
-    this.stream.write(`${this.getFullPrefixText(prefixText, " ")}${options2.symbol || " "}${fullText}
-`);
-    return this;
-  }
-};
-function ora(options2) {
-  return new Ora(options2);
-}
-
-// index.js
+var import_ora = __toESM(require_ora(), 1);
 async function loading(fn, message, ...args) {
-  const spinner = ora(message);
+  const spinner = (0, import_ora.default)(message);
   spinner.start();
   try {
     const result = await fn(...args);
